@@ -27,3 +27,7 @@ manUnitedWins = manUnitedHomeWins + manUnitedAwayWins;
 console.log(
   `Manchester United won a total of ${manUnitedWins} games, ${manUnitedHomeWins} at home and ${manUnitedAwayWins} away.`
 );
+
+import { dateStringToDate } from "./utils";
+
+console.log(dateStringToDate("15/2/2020"));
