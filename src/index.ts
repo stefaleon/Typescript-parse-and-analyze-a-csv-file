@@ -1,15 +1,11 @@
 import { CsvFileReader } from "./CsvFileReader";
+import { MatchResult } from "./MatchResult";
+import { dateStringToDate } from "./utils";
 
 const reader = new CsvFileReader("football.csv");
 reader.read();
 const matches = reader.data;
 // console.log(matches);
-
-enum MatchResult {
-  HomeWin = "H",
-  AwayWin = "A",
-  Draw = "D"
-}
 
 let manUnitedWins = 0;
 let manUnitedHomeWins = 0;
@@ -27,7 +23,3 @@ manUnitedWins = manUnitedHomeWins + manUnitedAwayWins;
 console.log(
   `Manchester United won a total of ${manUnitedWins} games, ${manUnitedHomeWins} at home and ${manUnitedAwayWins} away.`
 );
-
-import { dateStringToDate } from "./utils";
-
-console.log(dateStringToDate("15/2/2020"));
