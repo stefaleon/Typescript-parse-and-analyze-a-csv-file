@@ -17,6 +17,8 @@
 "start": "concurrently npm:compilewatch npm:nodemonindex"
 ```
 
+- to use the Node file system, npm install `@types/node`
+
 ## project target
 
 - Node Type definitions
