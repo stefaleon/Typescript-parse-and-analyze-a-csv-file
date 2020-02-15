@@ -1,0 +1,18 @@
+{
+  "name": "typescript-bubble-sorting-data-structures",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compilewatch": "tsc -w",
+    "nodemonindex": "nodemon build/index.js",
+    "start": "concurrently npm:compilewatch npm:nodemonindex"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "nodemon": "^2.0.2"
+  }
+}
