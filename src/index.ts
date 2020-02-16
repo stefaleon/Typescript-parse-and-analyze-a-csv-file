@@ -2,6 +2,7 @@ import { CsvFileReader } from "./CsvFileReader";
 import { MatchReader } from "./MatchReader";
 import { WinsAnalysis } from "./analyzers/WinsAnalysis";
 import { ConsoleLogger } from "./reporters/ConsoleLogger";
+import { HTMLWriter } from "./reporters/HTMLWriter";
 import { Summary } from "./Summary";
 
 const csvFileReader = new CsvFileReader("football.csv");
@@ -21,3 +22,10 @@ const LiverpoolSummary = new Summary(
 
 ManUnitedSummary.analyzeAndOutput(matches);
 LiverpoolSummary.analyzeAndOutput(matches);
+
+const ChelseaSummary = new Summary(
+  new WinsAnalysis("Chelsea"),
+  new HTMLWriter()
+);
+
+ChelseaSummary.analyzeAndOutput(matches);
