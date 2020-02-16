@@ -1,6 +1,8 @@
 import { CsvFileReader } from "./CsvFileReader";
 import { MatchReader } from "./MatchReader";
 import { WinsAnalysis } from "./analyzers/WinsAnalysis";
+import { ConsoleLogger } from "./reporters/ConsoleLogger";
+import { Summary } from "./Summary";
 
 const csvFileReader = new CsvFileReader("football.csv");
 const matchReader = new MatchReader(csvFileReader);
@@ -8,10 +10,14 @@ matchReader.load();
 const matches = matchReader.matches;
 // console.log(matches);
 
-const manUnitedAnalysis = new WinsAnalysis("Man United");
-const liverpoolAnalysis = new WinsAnalysis("Liverpool");
+const ManUnitedSummary = new Summary(
+  new WinsAnalysis("Man United"),
+  new ConsoleLogger()
+);
+const LiverpoolSummary = new Summary(
+  new WinsAnalysis("Liverpool"),
+  new ConsoleLogger()
+);
 
-const MUresult = manUnitedAnalysis.run(matches);
-const Lresult = liverpoolAnalysis.run(matches);
-console.log(MUresult);
-console.log(Lresult);
+ManUnitedSummary.analyzeAndOutput(matches);
+LiverpoolSummary.analyzeAndOutput(matches);
