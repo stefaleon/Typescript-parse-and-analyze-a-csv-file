@@ -1,18 +1,12 @@
-import { CsvFileReader } from "./CsvFileReader";
 import { MatchReader } from "./MatchReader";
 import { Summary } from "./Summary";
 
-const csvFileReader = new CsvFileReader("football.csv");
-const matchReader = new MatchReader(csvFileReader);
+const matchReader = MatchReader.newMatchReaderFromCsv("football.csv");
+const ManUnitedWinsLog = Summary.newWinsAnalysisForConsole("Man United");
+const LiverpoolWinsLog = Summary.newWinsAnalysisForConsole("Liverpool");
+const ChelseaWinsHtmlReport = Summary.newWinsAnalysisForHtml("Chelsea");
+
 matchReader.load();
-const matches = matchReader.matches;
-// console.log(matches);
-
-const ManUnitedSummary = Summary.newWinsAnalysisForConsole("Man United");
-ManUnitedSummary.analyzeAndOutput(matches);
-
-const LiverpoolSummary = Summary.newWinsAnalysisForConsole("Liverpool");
-LiverpoolSummary.analyzeAndOutput(matches);
-
-const ChelseaSummary = Summary.newWinsAnalysisForHtml("Chelsea");
-ChelseaSummary.analyzeAndOutput(matches);
+ManUnitedWinsLog.analyzeAndOutput(matchReader.matches);
+LiverpoolWinsLog.analyzeAndOutput(matchReader.matches);
+ChelseaWinsHtmlReport.analyzeAndOutput(matchReader.matches);
