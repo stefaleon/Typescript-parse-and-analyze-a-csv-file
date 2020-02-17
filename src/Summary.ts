@@ -1,4 +1,7 @@
 import { MatchData } from "./MatchData";
+import { WinsAnalysis } from "./analyzers/WinsAnalysis";
+import { ConsoleLogger } from "./reporters/ConsoleLogger";
+import { HTMLWriter } from "./reporters/HTMLWriter";
 
 export interface Analyzer {
   run(matches: MatchData[]): string;
@@ -9,6 +12,14 @@ export interface OutputTarget {
 }
 
 export class Summary {
+  static newWinsAnalysisForConsole(teamName: string): Summary {
+    return new Summary(new WinsAnalysis(teamName), new ConsoleLogger());
+  }
+
+  static newWinsAnalysisForHtml(teamName: string): Summary {
+    return new Summary(new WinsAnalysis(teamName), new HTMLWriter());
+  }
+
   constructor(public analyzer: Analyzer, public outputTarget: OutputTarget) {}
 
   analyzeAndOutput(matches: MatchData[]): void {
